@@ -41,7 +41,8 @@ def pick_deli():
         except ValueError:
             print("thats not a valid number")
 
-# List of CPU's to buy
+# pickup information
+
 
 
 
