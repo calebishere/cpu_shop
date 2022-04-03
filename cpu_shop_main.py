@@ -5,7 +5,7 @@ def not_blank(question):
     while not valid:
         response = input(question)
         if response != "":
-            return response
+            return response.title()
         else:
             print("This cannot be blank ")
 
@@ -57,13 +57,12 @@ def pick_deli():
 def pick_up():
     question = ("Please enter your name: ")
     customer_detail["name"] = not_blank(question)
-    print (customer_detail["name"])
+    #print (customer_detail["name"])
 
     question = ("Please enter your phone number: ")
     customer_detail["phone"] = not_blank(question)
-    print(customer_detail["phone"])
-
-#print(customer_detail)
+    #print(customer_detail["phone"])
+    print(customer_detail)
 
 
 # order = delivery then ask for name - etc
