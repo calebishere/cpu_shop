@@ -14,9 +14,9 @@ def welcome_msg():
     import random
     from random import randint
 
-    ls_name = ["Caleb", "Stacey", "David", "Mitchell", "Laurence", "Casey", "Garry", "Tom", "Tim"]
+    ls_name = ["Caleb", "Stacey", "David", "Mitchell", "Laurence", "Casey", "Garry", "Tom", "Tim", "Grace"]
 
-    num = randint(0,8)
+    num = randint(0,9)
 
     name = (ls_name[num])
 
