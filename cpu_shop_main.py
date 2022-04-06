@@ -45,6 +45,7 @@ def pick_deli():
 
                 elif enter == 2:
                     print("Delivary")
+                    deliv_info()
                     break
 
             else:
@@ -65,21 +66,30 @@ def pick_up():
     print(customer_detail)
 
 
-# order = delivery then ask for name - etc
 
 
+# delivery information
 
+def deliv_info():
+    question = ("Please enter your name: ")
+    customer_detail["name"] = not_blank(question)
+    print (customer_detail["name"])
 
-
-
-
-
-
-
-
-
-
-
+    question = ("Please enter your phone number: ")
+    customer_detail["phone"] = not_blank(question)
+    print (customer_detail["phone"])
+    
+    question = ("Please enter your house number: ")
+    customer_detail["house"] = not_blank(question)
+    print (customer_detail["house"])
+    
+    question = ("Please enter your street name: ")
+    customer_detail["street"] = not_blank(question)
+    print (customer_detail["street"])
+    
+    question = ("Please enter your suburb: ")
+    customer_detail["suburb"] = not_blank(question)
+    print (customer_detail["suburb"])
 
 # Pickup order with name and phone number
 
@@ -157,6 +167,7 @@ def pick_up():
 
 
 # be able to quit or continue order after completion
+
 
 
 
