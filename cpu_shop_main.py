@@ -1,10 +1,20 @@
+#CPU shop - where you can buy all kinds of
+
+import random
+from random import randint
+
 #CPU list and list of CPU prices
+ls_name = ["Caleb", "Stacey", "David", "Mitchell", "Laurence", "Casey", "Garry", "Tom", "Tim", "Grace"]
 
 cpu_list = ["i3-8100", "i3-9100", "i3-10400", "i3-1115GRE", "i5-8600", "i5-9400", "i5-10400", 
             "i5-11400", "i7-8700", "i7-9700", "i7-10900", "i7-11800"]
+
 cpu_prices = [100.0, 120.0, 140.0, 160.0, 170.0, 190.0, 210.0, 220.0, 240.0, 255.0, 270.0, 300.0 ]
 
-
+# list to store ordered CPUs
+order_list = []
+# list to store cost of CPUs
+order_cost = []
 
 # Cpu Shop
 customer_detail = {}
@@ -19,8 +29,6 @@ def not_blank(question):
 
 # Welcome Message
 def welcome_msg():
-    import random
-    from random import randint
 
     ls_name = ["Caleb", "Stacey", "David", "Mitchell", "Laurence", "Casey", "Garry", "Tom", "Tim", "Grace"]
 
@@ -115,10 +123,7 @@ cpu_list = ["i3-8100", "i3-9100", "i3-10400", "i3-1115GRE", "i5-8600", "i5-9400"
             "i5-11400", "i7-8700", "i7-9700", "i7-10900", "i7-11800"]
 cpu_prices = [100.0, 120.0, 140.0, 160.0, 170.0, 190.0, 210.0, 220.0, 240.0, 255.0, 270.0, 300.0 ]
 
-# list to store ordered CPUs
-order_list = []
-# list to store cost of CPUs
-order_cost = []
+
 
 def menu():
     number_cpu = 12
