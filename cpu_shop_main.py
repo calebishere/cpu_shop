@@ -48,6 +48,7 @@ def welcome_msg():
 
 # Ask user if order is for delivary or pickup
 def pick_deli():
+    deliv_pick = ""
     print("Please enter 1 for pickup and 2 for delivary")
 
     while True:
@@ -56,12 +57,16 @@ def pick_deli():
             if enter >= 1 and enter <= 2:
                 if enter == 1:
                     print("Pick Up")
+                    deliv_pick = "pickup"
                     pick_up()
                     break
 
                 elif enter == 2:
                     print("Delivary")
+                    order_list.append("Delivery Charge")
+                    order_cost.append(9)
                     deliv_info()
+                    deliv_pick = "delivery"
                     break
 
             else:
@@ -69,20 +74,17 @@ def pick_deli():
 
         except ValueError:
             print("thats not a valid number")
+    return deliv_pick 
 
 # pickup information
 def pick_up():
     question = ("Please enter your name: ")
     customer_detail["name"] = not_blank(question)
-    #print (customer_detail["name"])
+    print (customer_detail["name"])
 
     question = ("Please enter your phone number: ")
     customer_detail["phone"] = not_blank(question)
-    #print(customer_detail["phone"])
-    print(customer_detail)
-
-
-
+    print(customer_detail["phone"])
 
 # delivery information
 
@@ -117,21 +119,6 @@ def menu():
 
 
 # choose total number of CPUs which is max of 5 CPUs 
-# List of CPUs
-
-cpu_list = ["i3-8100", "i3-9100", "i3-10400", "i3-1115GRE", "i5-8600", "i5-9400", "i5-10400", 
-            "i5-11400", "i7-8700", "i7-9700", "i7-10900", "i7-11800"]
-cpu_prices = [100.0, 120.0, 140.0, 160.0, 170.0, 190.0, 210.0, 220.0, 240.0, 255.0, 270.0, 300.0 ]
-
-
-
-def menu():
-    number_cpu = 12
-
-    for count in range(number_cpu):
-        print("{} {} ${}" .format(count+1,cpu_list[count],cpu_prices[count]))
-
-
 def order_cpu():
     # ask for the toal number of CPU's
     num_CPU = 0
@@ -163,54 +150,27 @@ def order_cpu():
             order_cost.append(cpu_prices[CPU_ordered])
             print("{} ${}".format(cpu_list[CPU_ordered],cpu_prices[CPU_ordered  ]))
             num_CPU = num_CPU-1
-            
-    print(order_list, order_cost)
 
 
 
 # Display the cost 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# display the whole order when finished
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+def print_order(del_pick):
+    total_cost = sum(order_cost)
+    print("Customer Details")
+    if del_pick == "pickup":
+        print("Your order is for pickup")
+        print(f"Customer Name: {customer_detail['name']} \nCustomer Phone: {customer_detail['phone']}")
+    elif del_pick == "delivery":
+        print("Your order is for delivery and a $9 delivery charge")    
+        print(f"Customer Name: {customer_detail['name']} \nCustomer Phone: {customer_detail['phone']} \nCustomer Address {customer_detail['house']} {customer_detail['street']} {customer_detail['suburb']}")
+    print()
+    print("Order Details")
+    count = 0
+    for item in order_list:
+        print("Ordered: {} ${}".format(item, order_cost[count]))
+        count = count+1
+    print("Total Order Cost")
+    print(f"${total_cost}")
 
 
 
@@ -224,14 +184,27 @@ def order_cpu():
 
 
 
+
+
+
+
+
+
+# Option for new order or to cancel the order
+
+
+
+
+
 def main():
     '''
     This is incharge of holding
     all of the code definitions
     '''
     welcome_msg()
-    pick_deli()
+    del_pick = pick_deli()
     menu()
     order_cpu()
-    
+    print_order(del_pick)
+
 main()
