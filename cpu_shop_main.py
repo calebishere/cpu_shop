@@ -1,7 +1,8 @@
 #CPU shop - where you can buy all kinds of
-
+import time
 import random
 from random import randint
+import sys
 
 #CPU list and list of CPU prices
 ls_name = ["Caleb", "Stacey", "David", "Mitchell", "Laurence", "Casey", "Garry", "Tom", "Tim", "Grace"]
@@ -174,24 +175,66 @@ def print_order(del_pick):
 
 
 
+# be able to confirm or cancel order after completion
+# this code will ask user if order or delivary
+def confirm_cancel():
+    print("Please confiurm your order")
+    print("Please enter 1 to confirm your order")
+    print("Please enter 2 to cancel your order")
 
+    while True:
+        try:
+            confirm = int(input("Enter here: "))
+            if confirm >= 1 and confirm <= 2:
+                if confirm == 1:
+                    print("Order Confirmed")
+                    print("We will go and get your CPU/s now")
+                    new_or_exit()
+                    break
+                
+                elif confirm == 2:
+                    print("Order has been cancelled")
+                    print("You can restart your order or exit the BOT")
+                    new_or_exit()
+                    break
 
+            else:
+                print("please try and choose 1 or 2")
 
-
-
-# be able to quit or continue order after completion
-
-
-
-
-
-
-
-
-
-
+        except ValueError:
+            print("thats not a valid number")
 # Option for new order or to cancel the order
 
+def new_or_exit():
+    print("Do you want to start another order or to exit?")
+    print("Please enter 1 to start a new order")
+    print("Please enter 2 to exit the program")
+    while True:
+        try:
+            confirm = int(input("Enter here: "))
+            if confirm >= 1 and confirm <= 2:
+                if confirm == 1:
+                    print("New Order")
+                    order_list.clear()
+                    order_cost.clear()
+                    customer_detail.clear()
+                    main()
+                    break
+                
+                elif confirm == 2:
+                    print("Exit")
+                    order_list.clear()
+                    order_cost.clear()
+                    customer_detail.clear()
+                    time.sleep(2)
+                    sys.exit
+                    break
+
+            else:
+                print("please try and choose 1 or 2")
+
+        except ValueError:
+            print("thats not a valid number")
 
 
 
@@ -206,5 +249,6 @@ def main():
     menu()
     order_cpu()
     print_order(del_pick)
+    confirm_cancel()
 
 main()
