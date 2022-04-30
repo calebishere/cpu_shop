@@ -1,14 +1,14 @@
 #CPU shop - where you can buy all kinds of
-import time
-import random
-from random import randint
-import sys
+import time # importing time so that the user has time to read exit before the code shuts down
+import random # this is going to import a random function into the code
+from random import randint # making random to randint
+import sys # importing system
 
 #CPU list and list of CPU prices
-ls_name = ["Caleb", "Stacey", "David", "Mitchell", "Laurence", "Casey", "Garry", "Tom", "Tim", "Grace"]
+ls_name = ["Caleb", "Stacey", "David", "Mitchell", "Laurence", "Casey", "Garry", "Tom", "Tim", "Grace"] # This is for the bot to have various of different names
 
 cpu_list = ["i3-8100", "i3-9100", "i3-10400", "i3-1115GRE", "i5-8600", "i5-9400", "i5-10400", 
-            "i5-11400", "i7-8700", "i7-9700", "i7-10900", "i7-11800"]
+            "i5-11400", "i7-8700", "i7-9700", "i7-10900", "i7-11800"] # This is holding all of the cpu names in the menu
 
 cpu_prices = [100.0, 120.0, 140.0, 160.0, 170.0, 190.0, 210.0, 220.0, 240.0, 255.0, 270.0, 300.0 ]
 
@@ -220,7 +220,6 @@ def new_or_exit():
                     customer_detail.clear()
                     main()
                     break
-                
                 elif confirm == 2:
                     print("Exit")
                     order_list.clear()
@@ -229,26 +228,20 @@ def new_or_exit():
                     time.sleep(2)
                     sys.exit
                     break
-
             else:
                 print("please try and choose 1 or 2")
-
         except ValueError:
             print("thats not a valid number")
-
-
-
-
 def main():
     '''
     This is incharge of holding
     all of the code definitions
     '''
-    welcome_msg()
-    del_pick = pick_deli()
-    menu()
-    order_cpu()
-    print_order(del_pick)
-    confirm_cancel()
+    welcome_msg() # This is printing the welcome message for the user to feel welcome
+    del_pick = pick_deli() # this is making del_pick to be equal to pick_deli()
+    menu() # This is for printing the menu
+    order_cpu() # this is for print the cpu order
+    print_order(del_pick) # Del_pick are in the brackets so print_order() can use it in the function 
+    confirm_cancel() # prints confirm_cancel() function
 
-main()
+main() 
