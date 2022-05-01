@@ -4,6 +4,8 @@ import random # this is going to import a random function into the code
 from random import randint # making random to randint
 import sys # importing system
 
+# BUGS - NAME INPPUT ALLOWS NUMBERS AND PHONE NUMBER ALLOWS LETTER AND CAN BE ANY LENGHT
+
 #CPU list and list of CPU prices
 ls_name = ["Caleb", "Stacey", "David", "Mitchell", "Laurence", "Casey", "Garry", "Tom", "Tim", "Grace"] # This is for the bot to have various of different names
 
@@ -27,6 +29,16 @@ def not_blank(question):
             return response.title()
         else:
             print("This cannot be blank ")
+
+# String validator
+def check_string(question):
+    while True:
+        response = input(question)
+        x = response.isalpha()
+        if x == False:
+            print("Your name should be only letters")
+        else:
+            return response.title()
 
 # checks to see if they characters are numbers
 def order_deliv(low, high, question):
@@ -80,7 +92,7 @@ def pick_deli():
 # pickup information
 def pick_up():
     question = ("Please enter your name: ")
-    customer_detail["name"] = not_blank(question)
+    customer_detail["name"] = check_string(question)
     print (customer_detail["name"])
 
     question = ("Please enter your phone number: ")
@@ -91,7 +103,7 @@ def pick_up():
 
 def deliv_info():
     question = ("Please enter your name: ")
-    customer_detail["name"] = not_blank(question)
+    customer_detail["name"] = check_string(question)
     print (customer_detail["name"])
 
     question = ("Please enter your phone number: ")
@@ -103,11 +115,11 @@ def deliv_info():
     print (customer_detail["house"])
     
     question = ("Please enter your street name: ")
-    customer_detail["street"] = not_blank(question)
+    customer_detail["street"] = check_string(question)
     print (customer_detail["street"])
     
     question = ("Please enter your suburb: ")
-    customer_detail["suburb"] = not_blank(question)
+    customer_detail["suburb"] = check_string(question)
     print (customer_detail["suburb"])
 
 # CPU list of sales
