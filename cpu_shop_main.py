@@ -28,11 +28,20 @@ def not_blank(question):
         else:
             print("This cannot be blank ")
 
+# checks to see if they characters are numbers
+def order_deliv(low, high, question):
+    while True:
+        try:
+            num = int(input(question))
+            if num >= low and num <= high:
+                return num
+            else:
+                print(f"Please enter a number between {low} and {high}")
+        except ValueError:
+            print("thats not a valid number")
+
 # Welcome Message
 def welcome_msg():
-
-    ls_name = ["Caleb", "Stacey", "David", "Mitchell", "Laurence", "Casey", "Garry", "Tom", "Tim", "Grace"]
-
     num = randint(0,9)
 
     name = (ls_name[num])
@@ -50,32 +59,23 @@ def welcome_msg():
 # Ask user if order is for delivary or pickup
 def pick_deli():
     deliv_pick = ""
-    print("Please enter 1 for pickup and 2 for delivary")
+    LOW = 1
+    HIGH = 2
+    question = (f"enter a number between {LOW} and {HIGH}: ")
+    print("1 for delivery and 2 for pickup")
+    answer = order_deliv(LOW, HIGH, question)
+    if answer == 1:
+        print("Pick Up")
+        deliv_pick = "pickup"
+        pick_up()
 
-    while True:
-        try:
-            enter = int(input("Enter here: "))
-            if enter >= 1 and enter <= 2:
-                if enter == 1:
-                    print("Pick Up")
-                    deliv_pick = "pickup"
-                    pick_up()
-                    break
-
-                elif enter == 2:
-                    print("Delivary")
-                    order_list.append("Delivery Charge")
-                    order_cost.append(9)
-                    deliv_info()
-                    deliv_pick = "delivery"
-                    break
-
-            else:
-                print("please try and choose 1 or 2")
-
-        except ValueError:
-            print("thats not a valid number")
-    return deliv_pick 
+    elif answer == 2:
+        print("Delivary")
+        order_list.append("Delivery Charge")
+        order_cost.append(9)
+        deliv_info()
+        deliv_pick = "delivery"
+    return deliv_pick
 
 # pickup information
 def pick_up():
@@ -123,29 +123,21 @@ def menu():
 def order_cpu():
     # ask for the toal number of CPU's
     num_CPU = 0
-
-    while True:
-        try:
-            num_CPU = int(input("How many Cpus's would you like to get?: "))
-            if num_CPU >= 1 and num_CPU <=5:
-                break
-            else:
-                print("Try and choose between 1 - 5") 
-        except ValueError:
-            print("Please enter a number...")
-    # Choose cpu from the list provided
+    LOW = 1
+    HIGH = 5
+    MENU_LOW = 1
+    MENU_HIGH = 12
+    print("How many cpu's would you like to order")
+    question = (f"enter a number between {LOW} and {HIGH}: ")
+    num_CPU = order_deliv(LOW, HIGH, question)
+    # Choose cpu from the list provided1
+    
     for item in range(num_CPU):
         while num_CPU > 0:
-            while True:
-                try:
-                    CPU_ordered = int(input("Please choose your CPU by entering the number from the menu: "))
-                    if CPU_ordered >= 1 and CPU_ordered <=12:
-                        break
-                    else:
-                        print("Try and choose between 1 - 12") 
-            
-                except ValueError:
-                    print("Please enter a number...")
+            print("please choose your cpu by entering the number from the menu")
+            question = (f"enter a number between {MENU_LOW} and {MENU_HIGH}: ")
+            CPU_ordered = order_deliv(MENU_LOW, MENU_HIGH, question)
+
             CPU_ordered = CPU_ordered -1
             order_list.append(cpu_list[CPU_ordered])
             order_cost.append(cpu_prices[CPU_ordered])
@@ -178,60 +170,50 @@ def print_order(del_pick):
 # be able to confirm or cancel order after completion
 # this code will ask user if order or delivary
 def confirm_cancel():
-    print("Please confiurm your order")
+    LOW = 1
+    HIGH = 2
     print("Please enter 1 to confirm your order")
     print("Please enter 2 to cancel your order")
-
-    while True:
-        try:
-            confirm = int(input("Enter here: "))
-            if confirm >= 1 and confirm <= 2:
-                if confirm == 1:
-                    print("Order Confirmed")
-                    print("We will go and get your CPU/s now")
-                    new_or_exit()
-                    break
+    question = (f"enter a number between {LOW} and {HIGH}: ")
+    confirm = order_deliv(LOW, HIGH, question)
+    if confirm == 1:
+        print("Order Confirmed")
+        print("We will go and get your CPU/s now")
+        new_or_exit()
+        
                 
-                elif confirm == 2:
-                    print("Order has been cancelled")
-                    print("You can restart your order or exit the BOT")
-                    new_or_exit()
-                    break
+    elif confirm == 2:
+        print("Order has been cancelled")
+        print("You can restart your order or exit the BOT")
+        new_or_exit()
 
-            else:
-                print("please try and choose 1 or 2")
-
-        except ValueError:
-            print("thats not a valid number")
 # Option for new order or to cancel the order
 
 def new_or_exit():
+    LOW = 1
+    HIGH = 2
+    question = (f"enter a number between {LOW} and {HIGH}: ")
     print("Do you want to start another order or to exit?")
     print("Please enter 1 to start a new order")
     print("Please enter 2 to exit the program")
-    while True:
-        try:
-            confirm = int(input("Enter here: "))
-            if confirm >= 1 and confirm <= 2:
-                if confirm == 1:
-                    print("New Order")
-                    order_list.clear()
-                    order_cost.clear()
-                    customer_detail.clear()
-                    main()
-                    break
-                elif confirm == 2:
-                    print("Exit")
-                    order_list.clear()
-                    order_cost.clear()
-                    customer_detail.clear()
-                    time.sleep(2)
-                    sys.exit
-                    break
-            else:
-                print("please try and choose 1 or 2")
-        except ValueError:
-            print("thats not a valid number")
+
+    confirm = order_deliv(LOW, HIGH, question)
+    if confirm == 1:
+        print("New Order")
+        order_list.clear()
+        order_cost.clear()
+        customer_detail.clear()
+        main()
+    elif confirm == 2:
+        print("Exit")
+        order_list.clear()
+        order_cost.clear()
+        customer_detail.clear()
+        time.sleep(2)
+        sys.exit
+
+        
+        
 def main():
     '''
     This is incharge of holding
